@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="25dp"
+        app:cardCornerRadius="10dp"
+        app:cardMaxElevation="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:text="@string/bye"
+            android:id="@+id/bye"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:id="@+id/relative_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:padding="16dp"
+                android:text="@string/packers"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:id="@+id/home_team_name">
+                
+            </TextView>
+
+            <TextView
+                android:id="@+id/away_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="16dp"
+                android:textSize="24sp"
+                android:textStyle="bold">
+                
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/home_team_name"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="32sp"
+                    android:layout_marginStart="8dp"
+                    android:textStyle="bold"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/home_team_score">
+                    
+                </TextView>
+                
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="2"
+
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/home_team_logo">
+
+                </ImageView>
+                
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/v"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/versus">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/away_team_logo">
+
+                </ImageView>
+                
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="32sp"
+                    android:layout_marginEnd="8dp"
+                    android:textStyle="bold"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/away_team_score">
+                </TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_below="@id/linear_layout"
+                android:padding="16dp"
+                android:layout_alignParentStart="true"
+                android:id="@+id/time_of_play">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/linear_layout"
+                android:padding="16dp"
+                android:id="@+id/state_of_play">
+
+            </TextView>
+
+
+        
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
