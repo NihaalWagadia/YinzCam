@@ -2,7 +2,23 @@ package com.example.yinzcam.helper;
 
 public class SchedulerData {
 
-    String awayTeamName, homeScore, awayScore, time, week, gameState;
+    String awayTeamName, homeScore, awayScore, time, week, gameState, imageUrl, homeImageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getHomeImageUrl() {
+        return homeImageUrl;
+    }
+
+    public void setHomeImageUrl(String homeImageUrl) {
+        this.homeImageUrl = homeImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getAwayTeamName() {
         return awayTeamName;
@@ -52,13 +68,15 @@ public class SchedulerData {
         this.gameState = gameState;
     }
 
-    public SchedulerData(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState) {
+    public SchedulerData(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState, String imageUrl, String homeImageUrl) {
         this.awayTeamName = awayTeamName;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.time = time;
         this.week = week;
         this.gameState = gameState;
+        this.imageUrl = imageUrl;
+        this.homeImageUrl = homeImageUrl;
     }
 
 }

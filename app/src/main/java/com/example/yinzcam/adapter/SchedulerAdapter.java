@@ -6,6 +6,7 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yinzcam.R;
 import com.example.yinzcam.helper.SchedulerData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +50,21 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             holder.timeStamp.setText(tempSchedulerData.getTime());
             holder.week.setText(tempSchedulerData.getWeek());
             holder.gameState.setText(tempSchedulerData.getGameState());
+            Picasso.with(context).load(tempSchedulerData.getImageUrl()).into(holder.awayTeamLogo);
+            Picasso.with(context).load(tempSchedulerData.getHomeImageUrl()).into(holder.homeTeamLogo);
+
         }
-//        else {
-//            //holder.bye.setText();
-//            holder.bye.setVisibility(View.VISIBLE);
-//        }
+        else {
+            //holder.bye.setText();
+            holder.bye.setVisibility(View.VISIBLE);
+        }
 
 
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -71,6 +81,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
     public class SchedulerViewHolder extends RecyclerView.ViewHolder {
         TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week, bye;
         RelativeLayout relativeLayout;
+        ImageView awayTeamLogo, homeTeamLogo;
 
 
         public SchedulerViewHolder(@NonNull View itemView) {
@@ -82,6 +93,8 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             gameState = itemView.findViewById(R.id.state_of_play);
             week = itemView.findViewById(R.id.week);
             bye = itemView.findViewById(R.id.bye);
+            awayTeamLogo = itemView.findViewById(R.id.away_team_logo);
+            homeTeamLogo = itemView.findViewById(R.id.home_team_logo);
             relativeLayout = itemView.findViewById(R.id.relative_layout);
         }
     }

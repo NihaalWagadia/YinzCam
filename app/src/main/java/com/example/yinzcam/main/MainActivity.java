@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://files.yinzcam.com.s3.amazonaws.com/iOS/interviews/ScheduleExercise/";
     private static final String TAG = "MainActivity";
-    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week;
+    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl,homeImageUrl;
     SchedulerAdapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -78,14 +78,16 @@ public class MainActivity extends AppCompatActivity {
                                 timeStamp = game.get(i).getDate().getText();
                                 week = game.get(i).getWeek();
                                 gameState = game.get(i).getGameState();
+                                imageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_"+game.get(i).getOpponent().getTriCode().toLowerCase()+"_light.png";
+                                homeImageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_gb_light.png";
 
-                                SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, timeStamp, week, gameState);
+                                SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, timeStamp, week, gameState, imageUrl, homeImageUrl);
                                 schedulerDataArrayList.add(schedulerData);
 
 
                             } else {
                                 Log.d("Dummy", "No result");
-                                SchedulerData schedulerData = new SchedulerData(null, null, null, null, null, null);
+                                SchedulerData schedulerData = new SchedulerData(null, null, null, null, null, null, null, null);
                                 schedulerDataArrayList.add(schedulerData);
                             }
 
