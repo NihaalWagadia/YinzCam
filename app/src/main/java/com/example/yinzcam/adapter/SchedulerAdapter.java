@@ -1,6 +1,7 @@
 package com.example.yinzcam.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
 
         final SchedulerData tempSchedulerData = schedulerData.get(position);
         if(tempSchedulerData.getAwayScore() != null){
+            Log.d("Trial", tempSchedulerData.getTime());
             holder.awayTeamName.setText(tempSchedulerData.getAwayTeamName());
             holder.homeScore.setText(tempSchedulerData.getHomeScore());
             holder.awayScore.setText(tempSchedulerData.getAwayScore());
@@ -47,6 +49,10 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             holder.week.setText(tempSchedulerData.getWeek());
             holder.gameState.setText(tempSchedulerData.getGameState());
         }
+//        else {
+//            //holder.bye.setText();
+//            holder.bye.setVisibility(View.VISIBLE);
+//        }
 
 
     }
@@ -63,7 +69,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
 
 
     public class SchedulerViewHolder extends RecyclerView.ViewHolder {
-        TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week;
+        TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week, bye;
         RelativeLayout relativeLayout;
 
 
@@ -75,6 +81,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             timeStamp = itemView.findViewById(R.id.time_of_play);
             gameState = itemView.findViewById(R.id.state_of_play);
             week = itemView.findViewById(R.id.week);
+            bye = itemView.findViewById(R.id.bye);
             relativeLayout = itemView.findViewById(R.id.relative_layout);
         }
     }
