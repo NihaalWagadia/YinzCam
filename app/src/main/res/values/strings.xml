@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">YinzCam</string>
+    <string name="app_name">SCHEDULE</string>
     <string name="v">V</string>
     <string name="bye">BYE</string>
     <string name="packers">PACKERS</string>
+    <string name="_2020_regular_season">2020 REGULAR SEASON</string>
+    <string name="schedule">SCHEDULE</string>
 </resources>

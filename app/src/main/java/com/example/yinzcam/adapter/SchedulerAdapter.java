@@ -1,5 +1,6 @@
 package com.example.yinzcam.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -38,6 +39,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
         return new SchedulerViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull SchedulerViewHolder holder, int position) {
 
@@ -50,6 +52,8 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             holder.timeStamp.setText(tempSchedulerData.getTime());
             holder.week.setText(tempSchedulerData.getWeek());
             holder.gameState.setText(tempSchedulerData.getGameState());
+            holder.versus.setText("V");
+            holder.homeTeamName.setText("PACKERS");
             Picasso.with(context).load(tempSchedulerData.getImageUrl()).into(holder.awayTeamLogo);
             Picasso.with(context).load(tempSchedulerData.getHomeImageUrl()).into(holder.homeTeamLogo);
 
@@ -79,7 +83,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
 
 
     public class SchedulerViewHolder extends RecyclerView.ViewHolder {
-        TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week, bye;
+        TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week, bye, versus, homeTeamName;
         RelativeLayout relativeLayout;
         ImageView awayTeamLogo, homeTeamLogo;
 
@@ -95,7 +99,9 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
             bye = itemView.findViewById(R.id.bye);
             awayTeamLogo = itemView.findViewById(R.id.away_team_logo);
             homeTeamLogo = itemView.findViewById(R.id.home_team_logo);
+            homeTeamName = itemView.findViewById(R.id.home_team_name);
             relativeLayout = itemView.findViewById(R.id.relative_layout);
+            versus = itemView.findViewById(R.id.versus);
         }
     }
 }

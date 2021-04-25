@@ -1,12 +1,15 @@
 package com.example.yinzcam.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.yinzcam.R;
 import com.example.yinzcam.adapter.SchedulerAdapter;
@@ -16,7 +19,11 @@ import com.example.yinzcam.model.ScheduleApiResponse;
 import com.example.yinzcam.model.gamesection.Game;
 import com.example.yinzcam.model.gamesection.GameSection;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://files.yinzcam.com.s3.amazonaws.com/iOS/interviews/ScheduleExercise/";
     private static final String TAG = "MainActivity";
     String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl,homeImageUrl;
+    Date val;
     SchedulerAdapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -63,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<Game> game = response.body().getGameSections().get(0).getGame();
                         for (int i = 0; i < game.size(); i++) {
                             if (game.get(i).getResult().length() > 0) {
+                                if(game.get(i).isHome()){
+                                    homeScore = game.get(i).getHomeScore();
+                                    awayScore = game.get(i).getAwayScore();
+                                }
+                                else {
+                                    homeScore = game.get(i).getAwayScore();
+                                    awayScore = game.get(i).getHomeScore();
+                                }
                                 Log.d(TAG, "onResponse \n" +
                                         "awayTeam:" + game.get(i).getOpponent().getName() + "\n" +
                                         "homeScore:" + game.get(i).getHomeScore() + "\n" +
@@ -73,13 +89,12 @@ public class MainActivity extends AppCompatActivity {
                                         "state:" + game.get(i).getGameState() + "\n");
 
                                 awayTeamName = game.get(i).getOpponent().getName();
-                                homeScore = game.get(i).getHomeScore();
-                                awayScore = game.get(i).getAwayScore();
                                 timeStamp = game.get(i).getDate().getText();
                                 week = game.get(i).getWeek();
                                 gameState = game.get(i).getGameState();
                                 imageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_"+game.get(i).getOpponent().getTriCode().toLowerCase()+"_light.png";
                                 homeImageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_gb_light.png";
+
 
                                 SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, timeStamp, week, gameState, imageUrl, homeImageUrl);
                                 schedulerDataArrayList.add(schedulerData);

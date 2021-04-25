@@ -37,6 +37,18 @@ public class Game {
     @Expose
     private String home;
 
+    @SerializedName("IsHome")
+    @Expose
+    private boolean isHome;
+
+    public boolean isHome() {
+        return isHome;
+    }
+
+    public void setIsHome(boolean isHome) {
+        this.isHome = isHome;
+    }
+
     public String getHome() {
         return home;
     }
@@ -53,6 +65,20 @@ public class Game {
         this.result = result;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" +
+                "opponent=" + opponent +
+                ", gameState='" + gameState + '\'' +
+                ", awayScore='" + awayScore + '\'' +
+                ", homeScore='" + homeScore + '\'' +
+                ", date=" + date +
+                ", week='" + week + '\'' +
+                ", result='" + result + '\'' +
+                ", home='" + home + '\'' +
+                ", isHome=" + isHome +
+                '}';
+    }
 
     public String getWeek() {
         return week;
@@ -100,20 +126,6 @@ public class Game {
 
     public void setOpponent(Opponent opponent) {
         this.opponent = opponent;
-    }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "opponent=" + opponent +
-                ", gameState='" + gameState + '\'' +
-                ", awayScore='" + awayScore + '\'' +
-                ", homeScore='" + homeScore + '\'' +
-                ", date=" + date +
-                ", week='" + week + '\'' +
-                ", result='" + result + '\'' +
-                ", home='" + home + '\'' +
-                '}';
     }
 
 }
