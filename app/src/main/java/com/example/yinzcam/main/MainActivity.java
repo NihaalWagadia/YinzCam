@@ -34,8 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://files.yinzcam.com.s3.amazonaws.com/iOS/interviews/ScheduleExercise/";
     private static final String TAG = "MainActivity";
-    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl,homeImageUrl;
-    Date val;
+    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl,homeImageUrl, numeric, day;
+    Date date;
     SchedulerAdapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -94,9 +94,20 @@ public class MainActivity extends AppCompatActivity {
                                 gameState = game.get(i).getGameState();
                                 imageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_"+game.get(i).getOpponent().getTriCode().toLowerCase()+"_light.png";
                                 homeImageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_gb_light.png";
+                                numeric = game.get(i).getDate().getNumeric();
+                                TimeZone tz = TimeZone.getTimeZone("UTC");
+                                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                df.setTimeZone(tz);
+                                try {
+                                    date = df.parse(numeric);
+                                } catch (ParseException | java.text.ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                day = date.toString();
+                                String[] detailed_time = day.split(" ");
+                                day = detailed_time[0]+","+detailed_time[1]+detailed_time[2];
 
-
-                                SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, timeStamp, week, gameState, imageUrl, homeImageUrl);
+                                SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, day, week, gameState, imageUrl, homeImageUrl);
                                 schedulerDataArrayList.add(schedulerData);
 
 

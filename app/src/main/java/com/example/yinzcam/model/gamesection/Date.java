@@ -9,6 +9,18 @@ public class Date {
     @Expose
     private String text;
 
+    @SerializedName("Numeric")
+    @Expose
+    private String numeric;
+
+    public String getNumeric() {
+        return numeric;
+    }
+
+    public void setNumeric(String numeric) {
+        this.numeric = numeric;
+    }
+
     public String getText() {
         return text;
     }
@@ -21,6 +33,7 @@ public class Date {
     public String toString() {
         return "Date{" +
                 "text='" + text + '\'' +
+                ", numeric='" + numeric + '\'' +
                 '}';
     }
 }
