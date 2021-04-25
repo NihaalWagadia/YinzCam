@@ -1,7 +1,6 @@
 package com.example.yinzcam.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,15 +8,13 @@ import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.yinzcam.R;
 import com.example.yinzcam.adapter.SchedulerAdapter;
 import com.example.yinzcam.apicall.YinzCamApi;
-import com.example.yinzcam.helper.SchedulerData;
+import com.example.yinzcam.helper.Match;
 import com.example.yinzcam.model.ScheduleApiResponse;
 import com.example.yinzcam.model.gamesection.Game;
-import com.example.yinzcam.model.gamesection.GameSection;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,7 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://files.yinzcam.com.s3.amazonaws.com/iOS/interviews/ScheduleExercise/";
     private static final String TAG = "MainActivity";
-    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl,homeImageUrl, numeric, day;
+    private static final String homeImageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_gb_light.png";
+    String awayTeamName, homeScore, awayScore, timeStamp, gameState, week, imageUrl, numeric, day;
     Date date;
     SchedulerAdapter adapter;
     RecyclerView recyclerView;
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<ScheduleApiResponse>() {
                     @Override
                     public void onResponse(Call<ScheduleApiResponse> call, Response<ScheduleApiResponse> response) {
-                        final ArrayList<SchedulerData> schedulerDataArrayList = new ArrayList<>();
+                        final ArrayList<Match> matchArrayList = new ArrayList<>();
                         Log.d(TAG, "onResponse Server Response: " + response.toString());
                         Log.d(TAG, "onResponse received Information: " + response.body().toString());
                         ArrayList<Game> game = response.body().getGameSections().get(0).getGame();
@@ -93,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                                 week = game.get(i).getWeek();
                                 gameState = game.get(i).getGameState();
                                 imageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_"+game.get(i).getOpponent().getTriCode().toLowerCase()+"_light.png";
-                                homeImageUrl = "http://yc-app-resources.s3.amazonaws.com/nfl/logos/nfl_gb_light.png";
                                 numeric = game.get(i).getDate().getNumeric();
                                 TimeZone tz = TimeZone.getTimeZone("UTC");
                                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,20 +104,19 @@ public class MainActivity extends AppCompatActivity {
                                 String[] detailed_time = day.split(" ");
                                 day = detailed_time[0]+", "+detailed_time[1]+" "+detailed_time[2];
 
-                                SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, day, week, gameState, imageUrl, homeImageUrl);
-                                schedulerDataArrayList.add(schedulerData);
+                                Match match = new Match(awayTeamName, homeScore, awayScore, day, week, gameState, imageUrl, homeImageUrl);
+                                matchArrayList.add(match);
 
 
                             } else {
-                                Log.d("Dummy", "No result");
-                                SchedulerData schedulerData = new SchedulerData(null, null, null, null, null, null, null, null);
-                                schedulerDataArrayList.add(schedulerData);
+                                Match match = new Match(null, null, null, null, null, null, null, null);
+                                matchArrayList.add(match);
                             }
 
                         }
-                        adapter = new SchedulerAdapter(getApplicationContext(), new ArrayList<SchedulerData>());
+                        adapter = new SchedulerAdapter(getApplicationContext(), new ArrayList<Match>());
                         recyclerView.setAdapter(adapter);
-                        adapter.addItems(schedulerDataArrayList);
+                        adapter.addItems(matchArrayList);
 
 
                     }

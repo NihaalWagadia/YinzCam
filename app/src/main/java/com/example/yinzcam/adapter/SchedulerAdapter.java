@@ -2,8 +2,6 @@ package com.example.yinzcam.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,47 +13,46 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yinzcam.R;
-import com.example.yinzcam.helper.SchedulerData;
+import com.example.yinzcam.helper.Match;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.SchedulerViewHolder> {
+public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.MatchViewHolder> {
 
     private Context context;
-    private List<SchedulerData> schedulerData;
+    private List<Match> matchData;
+    private String versus = "V";
 
-    public SchedulerAdapter(Context context, List<SchedulerData> schedulerData){
+    public SchedulerAdapter(Context context, List<Match> matchData){
         this.context = context;
-        this.schedulerData = schedulerData;
+        this.matchData = matchData;
     }
 
     @NonNull
     @Override
-    public SchedulerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.schedulercard, null);
-        return new SchedulerViewHolder(view);
+        return new MatchViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull SchedulerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
 
-        final SchedulerData tempSchedulerData = schedulerData.get(position);
-        if(tempSchedulerData.getAwayScore() != null){
-            Log.d("Trial", tempSchedulerData.getTime());
-            holder.awayTeamName.setText(tempSchedulerData.getAwayTeamName());
-            holder.homeScore.setText(tempSchedulerData.getHomeScore());
-            holder.awayScore.setText(tempSchedulerData.getAwayScore());
-            holder.timeStamp.setText(tempSchedulerData.getTime());
-            holder.week.setText(tempSchedulerData.getWeek());
-            holder.gameState.setText(tempSchedulerData.getGameState());
-            holder.versus.setText("V");
+        final Match tempMatch = matchData.get(position);
+        if(tempMatch.getAwayScore() != null){
+            holder.awayTeamName.setText(tempMatch.getAwayTeamName());
+            holder.homeScore.setText(tempMatch.getHomeScore());
+            holder.awayScore.setText(tempMatch.getAwayScore());
+            holder.timeStamp.setText(tempMatch.getTime());
+            holder.week.setText(tempMatch.getWeek());
+            holder.gameState.setText(tempMatch.getGameState());
+            holder.versus.setText(versus);
             holder.homeTeamName.setText("PACKERS");
-            Picasso.with(context).load(tempSchedulerData.getImageUrl()).into(holder.awayTeamLogo);
-            Picasso.with(context).load(tempSchedulerData.getHomeImageUrl()).into(holder.homeTeamLogo);
+            Picasso.with(context).load(tempMatch.getImageUrl()).into(holder.awayTeamLogo);
+            Picasso.with(context).load(tempMatch.getHomeImageUrl()).into(holder.homeTeamLogo);
 
         }
         else {
@@ -72,22 +69,22 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
 
     @Override
     public int getItemCount() {
-        return schedulerData.size();
+        return matchData.size();
     }
 
-    public void addItems(List<SchedulerData> schedulerDataLisrt) {
-        schedulerData.addAll(schedulerDataLisrt);
+    public void addItems(List<Match> matchLisrt) {
+        matchData.addAll(matchLisrt);
         notifyDataSetChanged();
     }
 
 
-    public class SchedulerViewHolder extends RecyclerView.ViewHolder {
+    public class MatchViewHolder extends RecyclerView.ViewHolder {
         TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week, bye, versus, homeTeamName;
         RelativeLayout relativeLayout;
         ImageView awayTeamLogo, homeTeamLogo;
 
 
-        public SchedulerViewHolder(@NonNull View itemView) {
+        public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
             awayTeamName = itemView.findViewById(R.id.away_team_name);
             homeScore =  itemView.findViewById(R.id.home_team_score);

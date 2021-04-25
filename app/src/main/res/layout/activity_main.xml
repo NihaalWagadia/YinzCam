@@ -7,17 +7,10 @@
     android:orientation="vertical"
     tools:context=".main.MainActivity">
 
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_weight="1"
             android:background="@color/green"
             android:textAlignment="center">
 
@@ -33,7 +26,6 @@
             </TextView>
         </androidx.appcompat.widget.Toolbar>
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -45,23 +37,12 @@
 
         </TextView>
 
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="8">
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-    </RelativeLayout>
 
 
 </LinearLayout>

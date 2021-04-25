@@ -1,6 +1,6 @@
 package com.example.yinzcam.helper;
 
-public class SchedulerData {
+public class Match {
 
     String awayTeamName, homeScore, awayScore, time, week, gameState, imageUrl, homeImageUrl;
 
@@ -68,7 +68,7 @@ public class SchedulerData {
         this.gameState = gameState;
     }
 
-    public SchedulerData(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState, String imageUrl, String homeImageUrl) {
+    public Match(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState, String imageUrl, String homeImageUrl) {
         this.awayTeamName = awayTeamName;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
