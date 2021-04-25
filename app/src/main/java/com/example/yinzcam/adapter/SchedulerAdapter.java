@@ -39,18 +39,28 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
     public void onBindViewHolder(@NonNull SchedulerViewHolder holder, int position) {
 
         final SchedulerData tempSchedulerData = schedulerData.get(position);
-        holder.awayTeamName.setText(tempSchedulerData.getAwayTeamName());
-        holder.homeScore.setText(tempSchedulerData.getHomeScore());
-        holder.awayScore.setText(tempSchedulerData.getAwayScore());
-        holder.timeStamp.setText(tempSchedulerData.getTime());
-        holder.week.setText(tempSchedulerData.getWeek());
-        holder.gameState.setText(tempSchedulerData.getGameState());
+        if(tempSchedulerData.getAwayScore() != null){
+            holder.awayTeamName.setText(tempSchedulerData.getAwayTeamName());
+            holder.homeScore.setText(tempSchedulerData.getHomeScore());
+            holder.awayScore.setText(tempSchedulerData.getAwayScore());
+            holder.timeStamp.setText(tempSchedulerData.getTime());
+            holder.week.setText(tempSchedulerData.getWeek());
+            holder.gameState.setText(tempSchedulerData.getGameState());
+        }
+
+
     }
 
     @Override
     public int getItemCount() {
         return schedulerData.size();
     }
+
+    public void addItems(List<SchedulerData> schedulerDataLisrt) {
+        schedulerData.addAll(schedulerDataLisrt);
+        notifyDataSetChanged();
+    }
+
 
     public class SchedulerViewHolder extends RecyclerView.ViewHolder {
         TextView awayTeamName, homeScore, awayScore, timeStamp, gameState, week;
