@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse Server Response: " + response.toString());
                         Log.d(TAG, "onResponse received Information: " + response.body().toString());
                         ArrayList<Game> game = response.body().getGameSections().get(0).getGame();
-                        for (int i = 0; i < game.size(); i++) {
+                        for (int i = game.size()-1; i >= 0; i--) {
                             if (game.get(i).getResult().length() > 0) {
                                 if(game.get(i).isHome()){
                                     homeScore = game.get(i).getHomeScore();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 day = date.toString();
                                 String[] detailed_time = day.split(" ");
-                                day = detailed_time[0]+","+detailed_time[1]+detailed_time[2];
+                                day = detailed_time[0]+", "+detailed_time[1]+" "+detailed_time[2];
 
                                 SchedulerData schedulerData = new SchedulerData(awayTeamName, homeScore, awayScore, day, week, gameState, imageUrl, homeImageUrl);
                                 schedulerDataArrayList.add(schedulerData);

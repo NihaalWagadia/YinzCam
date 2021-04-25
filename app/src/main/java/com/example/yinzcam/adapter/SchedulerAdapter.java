@@ -59,7 +59,6 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Sche
 
         }
         else {
-            //holder.bye.setText();
             holder.bye.setVisibility(View.VISIBLE);
         }
 
