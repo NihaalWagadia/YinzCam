@@ -11,6 +11,13 @@ public class GameSection {
     @Expose
     private ArrayList<Game> game;
 
+    @Override
+    public String toString() {
+        return "GameSection{" +
+                "game=" + game +
+                '}';
+    }
+
     public ArrayList<Game> getGame() {
         return game;
     }
@@ -19,10 +26,5 @@ public class GameSection {
         this.game = game;
     }
 
-    @Override
-    public String toString() {
-        return "GameSection{" +
-                "game=" + game +
-                '}';
-    }
+
 }
