@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yinzcam.R;
-import com.example.yinzcam.helper.Match;
+import com.example.yinzcam.model.Match;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,7 +50,7 @@ public class SchedulerAdapter extends RecyclerView.Adapter<SchedulerAdapter.Matc
             holder.week.setText(tempMatch.getWeek());
             holder.gameState.setText(tempMatch.getGameState());
             holder.versus.setText(versus);
-            holder.homeTeamName.setText("PACKERS");
+            holder.homeTeamName.setText(tempMatch.getHomeTeamName());
             Picasso.with(context).load(tempMatch.getImageUrl()).into(holder.awayTeamLogo);
             Picasso.with(context).load(tempMatch.getHomeImageUrl()).into(holder.homeTeamLogo);
 

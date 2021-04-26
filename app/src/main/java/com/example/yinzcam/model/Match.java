@@ -1,8 +1,16 @@
-package com.example.yinzcam.helper;
+package com.example.yinzcam.model;
 
 public class Match {
 
-    String awayTeamName, homeScore, awayScore, time, week, gameState, imageUrl, homeImageUrl;
+    String awayTeamName, homeScore, awayScore, time, week, gameState, imageUrl, homeImageUrl, homeTeamName;
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -68,7 +76,7 @@ public class Match {
         this.gameState = gameState;
     }
 
-    public Match(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState, String imageUrl, String homeImageUrl) {
+    public Match(String awayTeamName, String homeScore, String awayScore, String time, String week, String gameState, String imageUrl, String homeImageUrl, String homeTeamName) {
         this.awayTeamName = awayTeamName;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
@@ -77,6 +85,7 @@ public class Match {
         this.gameState = gameState;
         this.imageUrl = imageUrl;
         this.homeImageUrl = homeImageUrl;
+        this.homeTeamName = homeTeamName;
     }
 
 }

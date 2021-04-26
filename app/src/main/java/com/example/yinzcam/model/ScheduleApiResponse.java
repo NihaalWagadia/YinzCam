@@ -1,6 +1,7 @@
 package com.example.yinzcam.model;
 
-import com.example.yinzcam.model.gamesection.GameSection;
+import com.example.yinzcam.model.responseobjects.GameSection;
+import com.example.yinzcam.model.responseobjects.TeamInfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,10 +21,23 @@ public class ScheduleApiResponse {
     @Expose
     private ArrayList<GameSection> gameSections;
 
+    @SerializedName("Team")
+    @Expose
+    private TeamInfo team;
+
+    public TeamInfo getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamInfo team) {
+        this.team = team;
+    }
+
     @Override
-    public String toString(){
-        return "Feed{" +
-                "GameSection= " + gameSections +
+    public String toString() {
+        return "ScheduleApiResponse{" +
+                "gameSections=" + gameSections +
+                ", team=" + team +
                 '}';
     }
 }

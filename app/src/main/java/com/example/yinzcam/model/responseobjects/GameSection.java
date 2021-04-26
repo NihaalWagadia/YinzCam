@@ -1,4 +1,4 @@
-package com.example.yinzcam.model.gamesection;
+package com.example.yinzcam.model.responseobjects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
